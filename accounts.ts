@@ -299,30 +299,11 @@ app.post('/accounts/:account_id/friends', async (req, res) => {
 });
 
 
-
-// Like or remove like from post
-app.patch('/media', async (req, res) => {
-  try {
-      //db INSERT or UPDATE query?
-      const request = 
-      {
-          "media_id": 6734,
-          "account_id": 1234,
-          "didLike": true //Not entirely sure about this one
-      }
-  } catch (err) {
-      res.json({
-          "status": err.status,
-          "message": err.message
-      })
-      console.error(err);
-  }
-});
-
 // Delete an account
 app.delete('/accounts/:account_id', async (req, res) => {
   try {
       //db DELETE query
+      // get account_id, filter and find account, delete from db
       res.json({
           "status": 200,
       });
@@ -339,6 +320,15 @@ app.delete('/accounts/:account_id', async (req, res) => {
 app.delete('/accounts/:account_id/:media_id', async (req, res) => {
   try {
       //db DELETE query
+      // 1. get account_id
+      // 2. filter and find account
+      // 3. get list of media posts
+      // 4. use req.params which will be a media ID
+      // 5. use the .filter function to return an array with all of the wanted posts except for the id
+      // 6. insert the updated list into db
+
+      // OR
+      // 1. delete from DB directly? not too sure 
       res.json({
           "status": 200,
       });
